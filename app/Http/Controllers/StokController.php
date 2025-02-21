@@ -12,8 +12,8 @@ class StokController extends Controller
      */
     public function index()
     {
-        $stoks = Stok::all();
-        return view('stoks.index', compact('stoks'));
+        $stoks = Stok::all(); //Mengambil semua data stok dari database
+        return view('stoks.index', compact('stoks'));  //Mengembalikan tampilan daftar stok
     }
 
     /**
@@ -21,7 +21,7 @@ class StokController extends Controller
      */
     public function create()
     {
-        return view('stoks.create');
+        return view('stoks.create');//Mengembalikan tampilan form tambah stok
     }
 
     /**
@@ -29,14 +29,14 @@ class StokController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate([//Validasi input form
             'nama' => 'required',
             'kondisi' => 'required',
         ]);
 
         //Hanya masukan atribut yang diizinkan
         Stok::create($request->only(['nama', 'kondisi']));
-        return redirect()->route('stoks.index')->with('success', 'Stok added successfully');
+        return redirect()->route('stoks.index')->with('success', 'Stok added successfully');//Redirect ke daftar stok dengan pesan sukses
     }
 
     /**
@@ -44,7 +44,7 @@ class StokController extends Controller
      */
     public function show(Stok $stoks)
     {
-        return view('stoks.show', compact('stoks'));
+        return view('stoks.show', compact('stoks'));//Mengembalikan tampilan detail stok
     }
 
     /**
@@ -52,7 +52,7 @@ class StokController extends Controller
      */
     public function edit(Stok $stoks)
     {
-        return view('stoks.edit', compact('stoks'));
+        return view('stoks.edit', compact('stoks'));//Mengembalikan tampilan form edit stok
     }
 
     /**
@@ -60,14 +60,14 @@ class StokController extends Controller
      */
     public function update(Request $request, Stok $stoks)
     {
-        $request->validate([
+        $request->validate([//Validasi input form
             'nama' => 'required',
             'kondisi' => 'required',
         ]);
 
         //Hanya masukan atribut yang diizinkan
         Stok::create($request->only(['nama', 'kondisi']));
-        return redirect()->route('stok.index')->with('success', 'Stok updated successfully');
+        return redirect()->route('stoks.index')->with('success', 'Stok updated successfully');//Redirect ke daftar stok dengan pesan sukses
     }
 
     /**
@@ -75,7 +75,7 @@ class StokController extends Controller
      */
     public function destroy(Stok $stok)
     {
-        $stok->delete();
-        return redirect()->route('stok.indek')->with('success', 'Stok deleted successfully');
+        $stok->delete();//Menghapus stok dari database
+        return redirect()->route('stoks.index')->with('success', 'Stok deleted successfully');//Redirect ke daftar stok dengan pesan sukses
     }
 }
