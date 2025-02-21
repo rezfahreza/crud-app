@@ -15,6 +15,6 @@
         <br>
         <button type="submit">Add Stok</button>
     </form>
-    <a href="{{ route('stoks.indek') }}">Back to list</a>
+    <a href="{{ route('stoks.index') }}">Back to list</a>
 </body>
 </html>
